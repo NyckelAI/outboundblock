@@ -10,11 +10,11 @@ The current beta version works as a Google App Script that anyone can use. You j
 
 1. Go to [App Scripts](https://www.google.com/script/start/)
 2. Create a new project
-3. Copy and paste the code in outboundblock.gs.
+3. Copy and paste the code found in outboundblock.gs.
 4. Save it and run.
-5. You'll be prompted to give permission. You'll likely get a big warning that it's unauthenticated. If it doesn't prompt you, try running it again. It's buggy.
-6. After you run it, it'll likely show a "null" under the execution steps and not actually run it. Like we said, buggy. It should work when set up as a trigger, though.
-7. Go to triggers on left, create a new trigger, and set up a time-based trigger for the `outboundblock` function. We recommend every hour, but if you would like it to check more often (like every 10 minutes, go ahead).
+5. You'll be prompted to give permission. You'll likely get a big warning that it's unauthenticated. Click on "Advanced" and proceed through the warning.
+6. After you run it, it'll likely show a "null" under the execution steps and not actually run it. This is an odd bug on App Script's side, but the code works fine when triggered below.
+7. Go to triggers on left, create a new trigger, and set up a time-based trigger for the `outboundblock` function. We recommend every 30 minutes, but if you would like it to check more often (like every 10 minutes, go ahead).
 
 ## Security notes
 
