@@ -1,10 +1,8 @@
 # OutboundBlock (Powered by Nyckel)
 
-<img width="751" alt="Screenshot 2024-02-18 at 3 55 14 PM" src="https://github.com/NyckelAI/chris/assets/20774922/e44afd34-7f52-4565-a08a-12aa8a5be60d">
-
 The purpose of [OutboundBlock](https://www.outboundblock.com) is identify and block unwanted B2B spam, both sales-driven outbound emails and marketing-driven newsletter emails. This problem will only get worse with AI that makes automated, unsolicited emailing more common. While Gmail catches many of these - and tags many marketing ones as promotional - we all know that many still slip through the cracks. These emails fill up our inboxes and annoy us. So, this tool aims to fix that.
 
-<img width="692" alt="Screenshot 2024-02-18 at 12 03 29 PM" src="https://github.com/NyckelAI/chris/assets/20774922/873ed678-db27-45e1-8d4a-dc73d267cc09">
+<img width="400" alt="Screenshot 2024-02-18 at 12 03 29 PM" src="https://www.outboundblock.com/images/outboundblock-example3.webp">
 
 The current beta version works as a Google App Script that anyone can use. You just need to copy and paste the code into your App Scripts account, then set up a trigger to have it run every 30 minutes. The code can be found in this repo under **outboundblock.gs**. 
 
