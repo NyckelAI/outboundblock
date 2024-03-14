@@ -20,14 +20,13 @@ The current beta version works as a Google App Script that anyone can use. You j
 
 ## Security notes
 
-The big warning you'll get when you go to save the code is due to this being a beta app script and not an official Gmail extension. We understand if this looks intense.
+The big permissions warning you'll get when you go to save and run the code is due to this being a beta app script and not an official Gmail extension. We understand if this looks intense.
 
 If it helps:
 
-1. Feel free to review the code before you install. Ask ChatGPT what it does, if you're not an expert. As you'll see, there's no functionality to write or send emails, only to read them and send a truncated version to Nyckel for classification.
-2. Once you install the script, Nyckel has no way to make edits to or access the code you installed yourself. It's hidden to just you.
+1. Feel free to review the code before you install. Ask ChatGPT what it does, if you're not an expert. As you'll see, there's no functionality to write or send or delete emails, only to read them and send a truncated version to Nyckel for classification. <i>So, even though Google says OutboundBlock has the ability to write or delete emails, we have no actual way to doing that.</i>
+2. Once you install the script, Nyckel has no way to make edits to or access that code.
 3. Nyckel does not store any API requests made to our platform. So, we have no access to your email content, even if we tried.
-4. The code also has logic 
 
 ## How OutboundBlock works
 
@@ -76,64 +75,3 @@ and
 to
 
 `return archiveAndLabelEmail(message, 'OutboundBlock');`
-
-## Setting it Up (instructions work for both outboundblock.gs and weekly_digest.gs)
-
-1. Go to [App Scripts](https://www.google.com/script/start/)
-2. Create a new project
-3. Copy and paste the code
-4. Save it and run.
-5. You'll be prompted to give permission. You'll likely get a big warning that it's unauthenticated. If it doesn't prompt you, try running it again. It's buggy.
-6. Go to triggers on left, create a new trigger, and set up a time-based trigger for that code. For OutboundBlock.gs, it should be 30 minutes or 1 hour; for Weekly_digest.gs, set it to once a week.
-
-**Please note:** 
-
-Invoke capture is turned OFF for this function.
-
-## Pulling Old Emails to Help Model
-
-Would love to get more real data to train the model. To that end, if anyone reading this could do a historical pull of emails and send them to Chris, that would help.
-
-I specifically would love more emails from (1) outbound spam and (2) real emails that should stay in the inbox. I am less concerned with marketing spam or transactional emails at the moment (tho feel free to send those). 
-
-Here's how to do that (relatively) quickly:
-
-1. Go to [App Scripts](https://www.google.com/script/start/)
-2. Create a new project
-3. Copy and paste the code from pull_emails.gs
-4. Save it and run. You'll be prompted to give permission. You'll likely get a big warning that it's unauthenticated. If it doesn't prompt you, try running it again. It's buggy.
-5. Wait for it to finish. The print statements will tell you when it's done. After that, check your Google Drive account. It should be added as a doc called "Emails_Export". Download that. It will include three columns: Sender, Subject, Body.
-6. Re-run it a few times with the below query changes
-7. Go through all of the emails and remove anything sensitive that you wouldn't want uploaded to the model for anyone at Nyckel to see. 
-8. No need to manually label the rows. Chris can do that, or we can just upload and then manually annotate in the UI.
-9. Feel free to remove the sender column, which also helps remove sensitive info. This column isn't sent to Nyckel, so Chris will delete it anyway.
-10. Send to Chris!
-
-<i>Queries to run</i>
-
-In the pull_emails.gs code is this section at the top:  
-
-var searchCriteria = 'in:inbox -"unsubscribe"';
-
-It's the search criteria for what emails to pull. In the above example, we are searching for emails in the inbox before today that also don't have the word "unsubscribe" in the body. By default it looks at most recent emails first.
-
-It would be great if you ran it a few times with different queries. So, you could do this:
-
- var searchCriteria = 'in:inbox -"unsubscribe"';
- var searchCriteria = 'in:inbox before:2023/01/01 -"unsubscribe"';
- var searchCriteria = 'in:inbox before:2022/01/01 -"unsubscribe"';
- var searchCriteria = 'in:spam'; //this looks at just your spam folder, which usually only has outbound spam in it. Only the last 30 days of spam are kept in the folder by Google
-
-If you think you got a lot of messages around the YC-days, then that could be a good time period to run too.
-
-## Google App Scripts limitations
-
-The script will cancel itself after six minutes. The odds of a run ever hitting this is low, unless our response times was to jump to 2+ seconds or something.
-
-## Security / Privacy
-
-It's imperative that we don't ever store emails from people. First, it opens us up to a ton of risks, as we could be storing sensitive work or personal info. It sounds like if invoke capture is turned off, by default we don't store any data, which is good. So, we'd need to ensure invoke capture is off for this function.
-
-## Go-to-market and monetization
-
-Have a bunch of ideas, but feels like we shouldn't put the cart in front of the horse and instead first see if this has legs in testing.
