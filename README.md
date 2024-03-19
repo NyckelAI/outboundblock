@@ -10,14 +10,17 @@ The code is in [outboundblock.gs](https://github.com/NyckelAI/outboundblock/blob
 
 ## Setting it up
 
-1. Go to [App Scripts](https://www.google.com/script/start/)
-2. Create a new project
-3. Remove the current code that's there.
-4. Copy and paste the code found in [outboundblock.gs](https://github.com/NyckelAI/outboundblock/blob/master/outboundblock.gs). Give it a name like "OutboundBlock".
-5. Save it and run.
-6. You'll be prompted to give permission, and you'll get a big warning that it's unauthenticated. Click on "Advanced" and proceed through the warning (see notes below about that). If it doesn't work, enables pop-ups in your browser and try again.
-7. After you run it, it'll likely show a "null" under the execution steps. Ignore that - it'll work once triggered below.
-8. Now go to Triggers on the left nav bar, create a new trigger, and set up a time-based trigger for the `Outboundblock` function. We recommend every 30 minutes, but if you would like it to check more often (like every 10 minutes, go ahead).
+1. Go to [App Scripts](https://www.google.com/script/start/).
+2. Create a new project. You can go to Editor on the left nav bar.
+<img width="478" alt="Screenshot 2024-03-19 at 11 40 01 AM" src="https://github.com/NyckelAI/outboundblock/assets/20774922/81c19fc4-8c9d-4d3a-9eab-db6e73c54443">
+3. Click on the plus sign and add a script.
+<img width="419" alt="Screenshot 2024-03-19 at 11 40 43 AM" src="https://github.com/NyckelAI/outboundblock/assets/20774922/687cb188-f52a-4a63-a690-6d2e89707b85">
+4. Remove the current code that's there.
+5. Copy and paste the code found in [outboundblock.gs](https://github.com/NyckelAI/outboundblock/blob/master/outboundblock.gs). Give it a name like "OutboundBlock".
+6. Save it and run.
+7. You'll be prompted to give permission, and you'll get a big warning that it's unauthenticated. Click on "Advanced" and proceed through the warning (see notes below about that). If it doesn't work, enables pop-ups in your browser and try again.
+8. After you run it, it'll likely show a "null" under the execution steps. Ignore that - it'll work once triggered below.
+9. Now go to Triggers on the left nav bar, create a new trigger, and set up a time-based trigger for the `Outboundblock` function. We recommend every 30 minutes, but if you would like it to check more often (like every 10 minutes, go ahead).
 
 <img width="422" alt="Screenshot 2024-03-19 at 11 22 22 AM" src="https://github.com/NyckelAI/outboundblock/assets/20774922/4cc20b4b-f490-46c0-ae11-b4de5e5c1d17">
 
