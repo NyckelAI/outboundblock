@@ -1,6 +1,6 @@
 // Constants
 const FUNCTION_ID = 'fx5e8hh0cufihjhx'; //Nyckel Function ID
-const NYCKEL_URL = `https://www.nyckel.com/v1/functions/${FUNCTION_ID}/invoke`; //Nyckel Endpoint
+const NYCKEL_URL = `https://www.nyckel.com/v1/functions/${FUNCTION_ID}/invoke?capture=false`; //Nyckel Endpoint
 const HOUR_CHECK = 1; // Looks at just emails received in the past {{X}} hour(s)
 const SUBJECT_NYCKEL = 'field_crkglijebrmnb1pr'; //Nyckel field ID for subject
 const BODY_NYCKEL = 'field_pv6rcsod2g7h0hsm'; //Nyckel field ID for Body
