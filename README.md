@@ -6,7 +6,7 @@ The purpose of [OutboundBlock](https://www.outboundblock.com) is identify and bl
 
 The current beta version is a [Google App Script](https://www.google.com/script/start/), a scripting tool that interacts with your Google Workspace apps. It's just copy/pasting, so you don't need technical experience to get going. 
 
-The code is in outboundblock.gs. 
+The code is in [outboundblock.gs](https://github.com/NyckelAI/outboundblock/blob/master/outboundblock.gs).
 
 ## Setting it up
 
