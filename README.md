@@ -22,7 +22,7 @@ The code is in [outboundblock.gs](https://github.com/NyckelAI/outboundblock/blob
 4. Remove the current code that's there.
 5. Copy and paste the code found in [outboundblock.gs](https://github.com/NyckelAI/outboundblock/blob/master/outboundblock.gs). Give it a name like "OutboundBlock".
 6. Save it and run.
-7. You'll be prompted to give permission, and you'll get a big warning that it's unauthenticated. Click on "Advanced" and proceed through the warning (see notes below about that). If it doesn't work, enables pop-ups in your browser and try again.
+7. You'll be prompted to give permission, and you'll get a big warning that it's unauthenticated. Click on "Advanced" and proceed through the warning (see notes below about that). If it doesn't work, enable pop-ups in your browser and try again.
 8. After you run it, it'll likely show a "null" under the execution steps. Ignore that - it'll work once triggered below.
 9. Now go to Triggers on the left nav bar, create a new trigger, and set up a time-based trigger for the `Outboundblock` function. We recommend every 30 minutes, but if you would like it to check more often (like every 10 minutes, go ahead).
 
