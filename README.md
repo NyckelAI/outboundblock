@@ -61,3 +61,7 @@ At the script's top is a constant for defining any domains that will be ignored 
 ## Very first run
 
 In the very first run, the script looks at any unread emails in the inbox (up to 500) from the past 180 days. After that it only looks at unread emails received in the past hour.
+
+## Removing OutboundBlock
+
+Deleting the trigger will stop OutboundBlock from running.
