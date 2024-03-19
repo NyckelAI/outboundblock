@@ -50,7 +50,7 @@ Some additional security notes:
 
 ## MarketingBlock vs OutboundBlock
 
-By default the script breaks these apart, with OutboundBlock refering to spammy 1:1 sales outbound emails, and MarketingBlock being focused more on 1:many marketing newsletters. We'd love feedback to understand if this bifurcation is needed, or if we should just combine them into one spam folder.
+By default the script breaks these apart, with OutboundBlock refering to spammy 1:1 sales outbound emails, and MarketingBlock being 1:many marketing newsletters. We'd love feedback to understand if this bifurcation is needed, or if we should just combine them into one spam folder.
 
 ## How to block domains from being sent to Nyckel
 
