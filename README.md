@@ -12,9 +12,13 @@ The code is in [outboundblock.gs](https://github.com/NyckelAI/outboundblock/blob
 
 1. Go to [App Scripts](https://www.google.com/script/start/).
 2. Create a new project. You can go to Editor on the left nav bar.
+
 <img width="478" alt="Screenshot 2024-03-19 at 11 40 01 AM" src="https://github.com/NyckelAI/outboundblock/assets/20774922/81c19fc4-8c9d-4d3a-9eab-db6e73c54443">
+
 3. Click on the plus sign and add a script.
+
 <img width="419" alt="Screenshot 2024-03-19 at 11 40 43 AM" src="https://github.com/NyckelAI/outboundblock/assets/20774922/687cb188-f52a-4a63-a690-6d2e89707b85">
+
 4. Remove the current code that's there.
 5. Copy and paste the code found in [outboundblock.gs](https://github.com/NyckelAI/outboundblock/blob/master/outboundblock.gs). Give it a name like "OutboundBlock".
 6. Save it and run.
