@@ -46,11 +46,11 @@ Some additional security notes:
 1. It looks at unread emails that have come in in the past hour.
 2. It ignores emails that include certain hardcode phrases or domains.
 3. It cleans up and sends the subject/body to Nyckel for classification.
-4. If the text model determines the email is spam, it will archive it from the inbox and move it to the MarketingSpam or OutboundSpam label. It will remain unread.
+4. If the text model determines the email is spam, it will archive it from the inbox and move it to the MarketingSpam or B2BSpam label. It will remain unread. If those labels don't exist, it will create them.
 
-## MarketingBlock vs OutboundBlock
+## MarketingSpam vs B2BSpam
 
-By default the script breaks these apart, with OutboundBlock refering to spammy 1:1 sales outbound emails, and MarketingBlock being 1:many marketing newsletters. We'd love feedback to understand if this bifurcation is needed, or if we should just combine them into one spam folder.
+By default the script breaks these apart, with B2BSpam refering to spammy 1:1 sales outbound emails, and MarketingSpam being 1:many marketing newsletters. We'd love feedback to understand if this bifurcation is needed, or if we should just combine them into one spam folder.
 
 ## How to block domains from being sent to Nyckel
 
