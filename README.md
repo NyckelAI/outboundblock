@@ -1,4 +1,4 @@
-Want the instructions in Google Docs instead? Click [here](https://docs.google.com/document/d/181ku2q7rp_gw3sdsAlRZvGM0Gol2parrA17_E4W_d0Y/edit?usp=sharing).
+Want the instructions in Google Docs instead? Click [here](https://docs.google.com/document/d/1cfPO1h1FRfZT8wG2GcJIbmAY4a4HG-gWjHIfs7HVNxk/edit?usp=sharing).
 
 # OutboundBlock (Powered by Nyckel)
 
