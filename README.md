@@ -1,3 +1,5 @@
+Want the instructions in Google Docs instead? Click [here](https://docs.google.com/document/d/181ku2q7rp_gw3sdsAlRZvGM0Gol2parrA17_E4W_d0Y/edit?usp=sharing).
+
 # OutboundBlock (Powered by Nyckel)
 
 The purpose of [OutboundBlock](https://www.outboundblock.com) is identify and block unwanted B2B spam. It uses a [Nyckel-created](https://www.nyckel.com/) text classification model.
