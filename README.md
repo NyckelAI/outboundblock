@@ -48,11 +48,7 @@ Some additional security notes:
 1. It looks at unread emails that have come in in the past hour.
 2. It ignores emails that include certain hardcode phrases or domains.
 3. It cleans up and sends the subject/body to Nyckel for classification.
-4. If the text model determines the email is spam, it will archive it from the inbox and move it to the MarketingSpam or B2BSpam label. It will remain unread. If those labels don't exist, it will create them.
-
-## MarketingSpam vs B2BSpam
-
-By default the script breaks these apart, with B2BSpam refering to spammy 1:1 sales outbound emails, and MarketingSpam being 1:many marketing newsletters. We'd love feedback to understand if this bifurcation is needed, or if we should just combine them into one spam folder.
+4. If the text model determines the email is spam, it will archive it from the inbox and move it to the B2BSpam label. It will remain unread. If those labels don't exist, it will create them.
 
 ## How to block domains from being sent to Nyckel
 
@@ -62,7 +58,7 @@ At the script's top is a constant for defining any domains that will be ignored 
 
 ## Very first run
 
-In the very first run, the script looks at any unread emails in the inbox (up to 500) from the past 180 days. After that it only looks at unread emails received in the past hour.
+In the very first run, the script looks at any unread emails in the inbox (up to 500) from the past 90 days. After that it only looks at unread emails received in the past hour.
 
 ## Removing OutboundBlock
 
