@@ -30,7 +30,6 @@ The code is in [outboundblock.gs](https://github.com/NyckelAI/outboundblock/blob
 
 <img width="450" alt="Screenshot 2024-03-19 at 11 44 27 AM" src="https://github.com/NyckelAI/outboundblock/assets/20774922/0ec86bc9-64c9-4b11-bf96-9b597951ea84">
 
-
 ## Security / authentication notes
 
 We understand if the permission warning is daunting, but that is the warning it gives for any third-party App Script, as none of them have gone through the Google Extension approval process. 
@@ -42,6 +41,38 @@ Some additional security notes:
 1. Once you add the code, Nyckel has no access to it. There's no way for Nyckel to inject additional logic into your app script.
 2. Nyckel does not store API requests. No one at Nyckel can see your emails.
 3. The script, by default, ignores emails from people with the same domain as you. Meaning, your internal company emails will never be sent to Nyckel, providing an additional security layer.
+
+## Auth Issues
+
+If you run into any errors involving authentication, such as:
+
+<img width="865" alt="Screenshot 2024-04-06 at 1 31 45 PM" src="https://github.com/NyckelAI/outboundblock/assets/20774922/6c70efec-29c1-4771-9c27-ef6fef473ead">
+
+Then you can manually add the auth scopes yourself. To do that:
+
+1. Go to Project Settings (the gear icon on left)
+2. Click on "Show "appsscript.json" manifest file in editor"
+3. Return to Editor and click on "appscript.json".
+4. Replace it with the below code, which outlines the scopes needed.
+
+```
+{
+  "timeZone": "America/New_York",
+  "oauthScopes": [
+    "https://www.googleapis.com/auth/userinfo.email",
+    "https://www.googleapis.com/auth/gmail.modify",
+    "https://www.googleapis.com/auth/script.external_request"
+  ],
+  "exceptionLogging": "STACKDRIVER",
+  "runtimeVersion": "V8"
+}
+```
+
+If that doesn't work, try deleting the script and re-adding it. It could have been a bug during the authentication process. Check your browser to ensure pop-ups aren't being blocked.
+
+<img width="915" alt="Screenshot 2024-04-06 at 1 21 11 PM" src="https://github.com/NyckelAI/outboundblock/assets/20774922/de6e1af5-d1ce-4696-bcae-e9d0b0d57a9c">
+
+<img width="632" alt="Screenshot 2024-04-06 at 1 17 28 PM" src="https://github.com/NyckelAI/outboundblock/assets/20774922/1d3dea38-f783-41f3-926b-f1d718e2bb1d">
 
 ## How OutboundBlock works
 
