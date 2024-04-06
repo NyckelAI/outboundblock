@@ -9,7 +9,7 @@ const URL_TRUNCATION_LIMIT = 40; //Character limit for URLs
 const BODY_TRUNCATION_LIMIT = 1400; // Charcter limit for body text
 const EMAIL_LIMIT = 500; // Max number of emails to process in a run. Google max limit is 500.
 const BASE_SEARCH_CRITERIA = 'label:inbox is:unread -label:starred -label:sent'; //Default search across both first run and subsequent ones
-const FIRST_RUN_TIMEFRAME_DAYS = 180; // For first run, # of days to process emails for.
+const FIRST_RUN_TIMEFRAME_DAYS = 90; // For first run, # of days to process emails for.
 const SUBSEQUENT_RUN_CRITERIA = '-label:MarketingSpam -label:B2BSpam'; //After first run, the additional rules to look for
 const TIME_AGO = new Date(new Date().getTime() - (HOUR_CHECK * 60 * 60 * 1000)); // time constant for subsequent runs. Doesn't need changed
 
