@@ -1,7 +1,7 @@
 // Constants
 const FUNCTION_ID = 'fx5e8hh0cufihjhx'; //Nyckel Function ID
 const NYCKEL_URL = `https://www.nyckel.com/v1/functions/${FUNCTION_ID}/invoke?capture=false`; //Nyckel Endpoint
-const HOUR_CHECK = 1; // Looks at just emails received in the past {{X}} hour(s)
+const HOUR_CHECK = 8; // Looks at just emails received in the past {{X}} hour(s)
 const SUBJECT_NYCKEL = 'field_crkglijebrmnb1pr'; //Nyckel field ID for subject
 const BODY_NYCKEL = 'field_pv6rcsod2g7h0hsm'; //Nyckel field ID for Body
 const IGNORED_DOMAINS = ['google', 'github', 'microsoft', 'linkedin', 'substack']; // Fixed domains to ignore
@@ -233,12 +233,75 @@ function processEmailBasedOnClassification(message, classification) {
       archiveAndLabelEmail(message, 'B2BSpam');
       break;
     case 'MarketingSpam':
-      archiveAndLabelEmail(message, 'MarketingSpam');
+      archiveAndLabelEmail(message, 'B2BSpam');
       break;
     default:
       // Handle other cases or do nothing
       break;
   }
+}
+
+// Function to move an email back to the inbox and remove a specific label
+function moveToInboxAndRemoveLabel(message, labelName) {
+  const thread = message.getThread();
+  const label = GmailApp.getUserLabelByName(labelName);
+  // Move the thread back to the inbox
+  thread.moveToInbox();
+  // Remove the label if it exists
+  if (label) {
+    thread.removeLabel(label);
+  }
+}
+
+function moveToInboxIfReplied() {
+  const spamLabels = ['B2BSpam', 'MarketingSpam'];
+  spamLabels.forEach(label => {
+    // Search for sent emails that are also in one of the spam labels
+    const query = `in:sent label:${label}`;
+    const threads = GmailApp.search(query);
+    
+    threads.forEach(thread => {
+      const messages = thread.getMessages();
+      messages.forEach(message => {
+        // Assuming we wish to move the entire thread if any message matches
+        moveToInboxAndRemoveLabel(message, label);
+      });
+    });
+  });
+
+  Logger.log('Completed checking sent emails in B2BSpam and MarketingSpam labels.');
+}
+
+function moveToInboxAndRemoveLabel(message, labelName) {
+  const thread = message.getThread();
+  const label = GmailApp.getUserLabelByName(labelName);
+  // Move the thread back to the inbox
+  thread.moveToInbox();
+  // Remove the label if it exists
+  if (label) {
+    thread.removeLabel(label);
+  }
+}
+
+function removeSpamLabelAndMoveToInboxForUserDomain() {
+  const userDomain = getUserDomain(); // Use the existing function to get the domain
+  const spamLabels = ['B2BSpam', 'MarketingSpam']; // Spam labels to check against
+
+  spamLabels.forEach(label => {
+    // Generate the query using the user's domain and current label
+    const query = `from:${userDomain} label:${label}`;
+    const threads = GmailApp.search(query);
+
+    threads.forEach(thread => {
+      const messages = thread.getMessages();
+      messages.forEach(message => {
+        // Move each message in the thread back to the inbox and remove the spam label
+        moveToInboxAndRemoveLabel(message, label);
+      });
+    });
+  });
+
+  Logger.log(`Completed removing spam labels for emails from domain: ${userDomain} and moving them to inbox.`);
 }
 
 // Label management
@@ -255,7 +318,6 @@ function getUserDomain() {
   return userDomain;
 }
 
-// Main Function
 function outboundblock() {
   log("Starting email classification process.");
 
@@ -270,8 +332,6 @@ function outboundblock() {
     const firstRunTimeFrame = new Date(new Date().getTime() - (FIRST_RUN_TIMEFRAME_DAYS * 24 * 60 * 60 * 1000));
     searchCriteria += ` after:${formatDateForGmailSearch(firstRunTimeFrame)}`;
     scriptProperties.setProperty('firstRunCompleted', 'true');
-
-    // Immediately fetch the flag after setting to confirm change
     firstRunFlag = scriptProperties.getProperty('firstRunCompleted');
     log("First run flag (immediately after setting): " + firstRunFlag);
   } else {
@@ -285,42 +345,21 @@ function outboundblock() {
   threads.forEach((thread, index) => {
     log(`Processing thread ${index + 1} of ${threads.length}`);
     thread.getMessages().forEach(message => {
-      const from = extractEmailAddress(message.getFrom()); // Extract the sender's email address
-      const subject = message.getSubject().toLowerCase(); // Get the subject of the email
-      const body = message.getPlainBody().toLowerCase(); // Get the plain text body of the email
-      log(`Email received time: ${message.getDate()}`);
-      if (message.getDate() < TIME_AGO) return log(`Skipping email with subject "${subject}" because it was not received in the last hour.`);
+      const from = extractEmailAddress(message.getFrom());
+      const subject = message.getSubject().toLowerCase();
+      const body = message.getPlainBody().toLowerCase();
 
-      // Extract the 'Reply-To' email address and domain
-      const replyTo = extractReplyToAddress(message.getReplyTo());
-      const replyToDomain = replyTo ? replyTo.split('@').pop().toLowerCase() : '';
-
-      // Apply ignore checks
-      const userDomain = getUserDomain(); // Get the user's domain
-      const fromDomain = extractEmailAddress(from).split('@').pop().toLowerCase(); // Extract domain from sender's email
-
-      // Log for debugging, can be removed later
-      log(`User's domain: ${userDomain}`);
-      log(`Sender's domain: ${fromDomain}`);
-      log(`Reply-To's domain: ${replyToDomain}`);
-
-      // Check if the email should be ignored based on domain
-      if (isFromIgnoredDomain(from) || (fromDomain === userDomain && !replyToDomain)) {
-        return log(`Skipping email from ${from} as it's from an ignored domain or matches user domain without suspicious Reply-To.`);
+      if (message.getDate() < TIME_AGO) {
+        return log(`Skipping email with subject "${subject}" because it was not received in the last hour.`);
       }
 
-      if (replyToDomain && replyToDomain !== fromDomain && (replyToDomain === userDomain || fromDomain === userDomain)) {
-        log(`Alert: Potential impersonation detected from ${from} with Reply-To ${replyTo}`);
-        // This is a case for potential impersonation - you might want to flag this email or handle differently
+      if (isFromIgnoredDomain(from) || shouldIgnoreEmail(body).shouldIgnore || shouldIgnoreSubject(subject).shouldIgnore) {
+        return log(`Skipping email from ${from} due to ignored content or domain.`);
       }
-
-      if (shouldIgnoreEmail(body).shouldIgnore || shouldIgnoreSubject(subject).shouldIgnore) {
-        return log(`Skipping email from ${from} due to ignored content.`);
-      }
-
-      const cleanedBody = cleanUpBodyText(body); // Clean the body text
+     
+      const cleanedBody = cleanUpBodyText(body);
       if (!subject || !cleanedBody) {
-        return archiveAndLabelEmail(message, 'MarketingSpam');
+        return archiveAndLabelEmail(message, 'B2BSpam');
       }
 
       try {
@@ -336,9 +375,14 @@ function outboundblock() {
           muteHttpExceptions: true
         });
 
+        // Log the status code and response body
+        log(`Nyckel API Response Status: ${response.getResponseCode()}`);
+        log(`Nyckel API Response Body: ${response.getContentText()}`);
+
         if (response.getResponseCode() === 200) {
           const responseData = JSON.parse(response.getContentText());
-          processEmailBasedOnClassification(message, responseData);
+          // Correct placement of processEmailBasedOnClassification call
+          processEmailBasedOnClassification(message, responseData, from);
           log(`Successfully processed email: Subject = "${subject}"`);
         } else {
           log(`Error fetching classification: ${response.getContentText()}`);
@@ -349,8 +393,15 @@ function outboundblock() {
     });
   });
 
+  // New line to call the function after processing
+  moveToInboxIfReplied();
+
+  // Call the new function here to run after checking the sent folder
+  removeSpamLabelAndMoveToInboxForUserDomain();
+
   log("Finished email classification process.");
 }
+
 
 function archiveAndLabelEmail(message, labelName) {
  var label = getOrCreateLabel(labelName);
