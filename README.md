@@ -93,4 +93,4 @@ In the very first run, the script looks at any unread emails in the inbox (up to
 
 ## Removing OutboundBlock
 
-Deleting the trigger will stop OutboundBlock from running.
+Deleting the trigger will stop OutboundBlock from running. You can also remove the code itself from the Editor view.
