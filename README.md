@@ -26,7 +26,7 @@ The code is in [outboundblock.gs](https://github.com/NyckelAI/outboundblock/blob
 6. Save it and run. If you get a red error warning around "couldn't find myfunction", run it again.
 7. You'll be prompted to give permission, and you'll get a big warning that it's unauthenticated. Click on "Advanced" and proceed through the warning (see notes below - it's a blanket warning for an App Script and the tool doesn't actually do what it warns again). If this doesn't work, enable pop-ups in your browser and try again.
 8. After you run it, it'll likely show a "null" under the execution steps. Ignore that - it'll work once triggered below.
-9. Now go to Triggers on the left nav bar, create a new trigger, and set up a time-based trigger for the `outboundblock` function.  We recommend using the “minute” time period and setting it for every 15 minutes, but if you would like it to check more often, go ahead. The script will run in 15 minutes after you turn the trigger on (or however many minutes you set).
+9. Now go to Triggers on the left nav bar, create a new trigger, and set up a time-based trigger for the `outboundblock` function.  We recommend using the “minute” time period and setting it for every 30 minutes. The script will run in 30 minutes after you turn the trigger on (or however many minutes you set).
 
 <img width="450" alt="Screenshot 2024-03-19 at 11 44 27 AM" src="https://github.com/NyckelAI/outboundblock/assets/20774922/0ec86bc9-64c9-4b11-bf96-9b597951ea84">
 
