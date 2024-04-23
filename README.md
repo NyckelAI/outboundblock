@@ -4,7 +4,7 @@ Want the instructions in Google Docs instead? Click [here](https://docs.google.c
 
 The purpose of [OutboundBlock](https://www.outboundblock.com) is identify and block unwanted B2B spam. It uses a [Nyckel-created](https://www.nyckel.com/) text classification model.
 
-<img width="400" alt="Screenshot 2024-02-18 at 12 03 29 PM" src="https://www.outboundblock.com/images/outboundblock-example3.webp">
+<img width="760" alt="outboundblock" src="https://github.com/NyckelAI/outboundblock/assets/20774922/1298201c-0366-4b5c-bd96-1d613d2aeb87">
 
 The current beta version is a [Google App Script](https://www.google.com/script/start/), a scripting tool that interacts with your Google Workspace apps. It's just copy/pasting, so you don't need technical experience to get going. 
 
