@@ -14,7 +14,7 @@ const IGNORED_DOMAINS = ['google', 'github', 'microsoft', 'nyckel', 'substack'];
 const BASE_SEARCH_CRITERIA = 'label:inbox is:unread -label:starred -label:sent';
 const FIRST_RUN_CRITERIA = 'newer_than:30d';
 const SUBSEQUENT_RUN_CRITERIA = `newer_than:1h -label:${LABEL_NAME}`;
-const EMAIL_LIMIT = 150; // Max number of emails to process in a run. Google max limit is 500.
+const EMAIL_LIMIT = 100; // Max number of emails to process in a run. Google max limit is 500.
 
 // Starts logging
 function log(message) {
