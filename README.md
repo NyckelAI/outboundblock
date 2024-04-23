@@ -102,7 +102,7 @@ If that doesn't work, you can try manually adding scopes yourself to your projec
 
 At the script's top is a constant for defining any domains that will be ignored by the script (and not sent to Nyckel). Feel free to add to this (or remove).
 
-`const IGNORED_DOMAINS = ['google', 'github', 'microsoft', 'nyckel', 'substack'];`
+`const IGNORED_DOMAINS = ['google', 'github', 'microsoft', 'substack'];`
 
 ## Very first run
 
