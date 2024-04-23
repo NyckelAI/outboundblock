@@ -38,7 +38,7 @@ If you are moving from an older version of OutboundBlock to a new one, please de
     
 9. After you run it, it'll likely show a "null" under the execution steps. Ignore that - it'll work once triggered below.
     
-10. Now go to Triggers on the left nav bar, create a new trigger, and set up a time-based trigger for the `outboundblock_2` function.  We recommend using the “minute” time period and setting it for every 15 minutes. The script will run 15 minutes after you turn the trigger on. Please note: do not set it for more often than every 15 minutes, as the script will hit run limits and start failing.
+10. Now go to Triggers on the left nav bar, create a new trigger, and set up a time-based trigger for the `outboundblock2` function.  We recommend using the “minute” time period and setting it for every 15 minutes. The script will run 15 minutes after you turn the trigger on. Please note: do not set it for more often than every 15 minutes, as the script will hit run limits and start failing.
 
 <img width="450" alt="Screenshot 2024-03-19 at 11 44 27 AM" src="https://github.com/NyckelAI/outboundblock/assets/20774922/0ec86bc9-64c9-4b11-bf96-9b597951ea84">
 
