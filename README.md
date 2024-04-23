@@ -32,13 +32,21 @@ If you are moving from an older version of OutboundBlock to a new one, please de
    
 6. Copy and paste the code found in [outboundblock.gs](https://github.com/NyckelAI/outboundblock/blob/master/outboundblock.gs). Give it a name like "OutboundBlock"
    
-7. Save it and run. If you get a red error warning around "couldn't find myfunction", run it again.
+7. Save it.
+
+8. Click on the down arrow next to “Execution Log
+   
+10. Scroll and select outboundblock2 from the list
     
-8. You'll be prompted to give permission, and you'll get a big warning that it's unauthenticated. Click on "Advanced" and proceed through the warning (see notes below - it's a blanket warning for an App Script and the tool doesn't actually do what it warns again). If this doesn't work, enable pop-ups in your browser and try again.
+<img width="797" alt="Screenshot 2024-04-23 at 2 14 12 PM" src="https://github.com/NyckelAI/outboundblock/assets/20774922/5fdafca6-59cc-40e5-88dd-83c59761deda">
+
+12. Press run. If you get a red error warning around "couldn't find myfunction", run it again.
     
-9. After you run it, it'll likely show a "null" under the execution steps. Ignore that - it'll work once triggered below.
+13. You'll be prompted to give permission, and you'll get a big warning that it's unauthenticated. Click on "Advanced" and proceed through the warning (see notes below - it's a blanket warning for an App Script and the tool doesn't actually do what it warns again). If this doesn't work, enable pop-ups in your browser and try again.
     
-10. Now go to Triggers on the left nav bar, create a new trigger, and set up a time-based trigger for the `outboundblock2` function.  We recommend using the “minute” time period and setting it for every 15 minutes. The script will run 15 minutes after you turn the trigger on. Please note: do not set it for more often than every 15 minutes, as the script will hit run limits and start failing.
+14. When that’s done, press ‘run’ again. This will prompt it to run for the first time. Depending on your # of unread emails, this could take anywhere from 15s to 5 mins.
+    
+15. Now go to Triggers on the left nav bar, create a new trigger, and set up a time-based trigger for the `outboundblock2` function.  We recommend using the “minute” time period and setting it for every 15 minutes. The script will run 15 minutes after you turn the trigger on. Please note: do not set it for more often than every 15 minutes, as the script will hit run limits and start failing.
 
 <img width="450" alt="Screenshot 2024-03-19 at 11 44 27 AM" src="https://github.com/NyckelAI/outboundblock/assets/20774922/0ec86bc9-64c9-4b11-bf96-9b597951ea84">
 
@@ -53,43 +61,6 @@ Some additional security notes:
 1. Once you add the code, Nyckel has no access to it. There's no way for Nyckel to inject additional logic into your app script.
 2. Nyckel does not store API requests. No one at Nyckel can see your emails.
 3. The script, by default, ignores emails from people with the same domain as you. Meaning, your internal company emails will never be sent to Nyckel, providing an additional security layer.
-
-## Auth Issues
-
-If you run into any errors involving authentication, such as:
-
-<img width="865" alt="Screenshot 2024-04-06 at 1 31 45 PM" src="https://github.com/NyckelAI/outboundblock/assets/20774922/6c70efec-29c1-4771-9c27-ef6fef473ead">
-
-Then we recommend:
-
-1. Deleting the current project
-2. Checking for ad blocker / pop up issues
-3. Follow the instructions again
-4. Make sure that you go through the Permissions workflow and grant access to OutboundBlock
-
-If that doesn't work, you can try manually adding scopes yourself to your project. To do that:
-
-1. Go to Project Settings (the gear icon on left)
-2. Click on "Show "appsscript.json" manifest file in editor"
-3. Return to Editor and click on "appscript.json".
-4. Replace it with the below code, which outlines the scopes needed.
-
-```
-{
-  "timeZone": "America/New_York",
-  "oauthScopes": [
-    "https://www.googleapis.com/auth/userinfo.email",
-    "https://www.googleapis.com/auth/gmail.modify",
-    "https://www.googleapis.com/auth/script.external_request"
-  ],
-  "exceptionLogging": "STACKDRIVER",
-  "runtimeVersion": "V8"
-}
-```
-
-<img width="915" alt="Screenshot 2024-04-06 at 1 21 11 PM" src="https://github.com/NyckelAI/outboundblock/assets/20774922/de6e1af5-d1ce-4696-bcae-e9d0b0d57a9c">
-
-<img width="632" alt="Screenshot 2024-04-06 at 1 17 28 PM" src="https://github.com/NyckelAI/outboundblock/assets/20774922/1d3dea38-f783-41f3-926b-f1d718e2bb1d">
 
 ## How OutboundBlock works
 
@@ -106,7 +77,7 @@ At the script's top is a constant for defining any domains that will be ignored 
 
 ## Very first run
 
-In the very first run, the script looks at any unread emails in the inbox (up to 150) from the past 30 days. After that it only looks at unread emails received in the past hour.
+In the very first run, the script looks at any unread emails in the inbox (up to 100) from the past 30 days. After that it only looks at unread emails received in the past hour.
 
 ## Removing OutboundBlock
 
