@@ -69,7 +69,7 @@ Some additional security notes:
 3. It cleans up and sends the subject/body to Nyckel for classification.
 4. If the model determines the email is spam, it will archive it from the inbox and move it to the B2BSpam label. It will remain unread. If that label don't exist, it will create them.
 
-## How to block domains from being sent to Nyckel
+## How to ensure certain domains never get moved to spam
 
 At the script's top is a constant for defining any domains that will be ignored by the script (and not sent to Nyckel). Feel free to add to this (or remove).
 
