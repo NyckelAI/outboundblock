@@ -34,19 +34,19 @@ If you are moving from an older version of OutboundBlock to a new one, please de
    
 7. Save it.
 
-8. Click on the down arrow next to “Execution Log
-   
-10. Scroll and select outboundblock2 from the list
+8. Click on the down arrow next to Execution Log.
+
+9. Select "GetUserDomain". Then press Run. If it gives you a "couldn't find myfunction" error, run it again. It will prompt you for authorization. After that, press Run again.
+
+<img width="514" alt="Screenshot 2024-04-24 at 8 59 13 PM" src="https://github.com/NyckelAI/outboundblock/assets/20774922/325b7bc1-e41e-43e9-85ff-4f463618e4bb">
+
+10. Next, you'll want to select "Outboundblock2" from the same list, press run, then give it authorization. 
     
 <img width="797" alt="Screenshot 2024-04-23 at 2 14 12 PM" src="https://github.com/NyckelAI/outboundblock/assets/20774922/5fdafca6-59cc-40e5-88dd-83c59761deda">
 
-12. Press run. If you get a red error warning around "couldn't find myfunction", run it again.
+11. If it doesn't automatically initiate the script, press Run again. It will run the script for the first time. Depending on your # of unread emails, this could take anywhere from 15s to 5 mins.
     
-13. You'll be prompted to give permission, and you'll get a big warning that it's unauthenticated. Click on "Advanced" and proceed through the warning (see notes below - it's a blanket warning for an App Script and the tool doesn't actually do what it warns again). If this doesn't work, enable pop-ups in your browser and try again.
-    
-14. When that’s done, press ‘run’ again. This will prompt it to run for the first time. Depending on your # of unread emails, this could take anywhere from 15s to 5 mins.
-    
-15. Now go to Triggers on the left nav bar, create a new trigger, and set up a time-based trigger for the `outboundblock2` function.  We recommend using the “minute” time period and setting it for every 15 minutes. The script will run 15 minutes after you turn the trigger on. Please note: do not set it for more often than every 15 minutes, as the script will hit run limits and start failing.
+12. Now go to Triggers on the left nav bar, create a new trigger, and set up a time-based trigger for the `outboundblock2` function.  We recommend using the “minute” time period and setting it for every 15 minutes. The script will run 15 minutes after you turn the trigger on. Please note: do not set it for more often than every 15 minutes, as the script will hit run limits and start failing.
 
 <img width="450" alt="Screenshot 2024-03-19 at 11 44 27 AM" src="https://github.com/NyckelAI/outboundblock/assets/20774922/0ec86bc9-64c9-4b11-bf96-9b597951ea84">
 
